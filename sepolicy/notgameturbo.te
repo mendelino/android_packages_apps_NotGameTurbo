@@ -1,4 +1,2 @@
 allow platform_app vendor_sysfs_touch:file rw_file_perms;
 allow priv_app vendor_sysfs_touch:file rw_file_perms;
-
-typeattribute vendor_sysfs_touch mlstrustedobject;
