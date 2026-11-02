@@ -107,10 +107,22 @@ class TouchTestView(context: Context) : View(context) {
             canvas.drawLine(0f, touchY, width.toFloat(), touchY, crossPaint)
         }
 
-        canvas.drawText("$instantRate Hz", 60f, 230f, ratePaint)
-        canvas.drawText("peak: $peakRate Hz    avg(1s): $avgRate Hz", 60f, 310f, infoPaint)
         canvas.drawText(
-            if (tracking) "Keep dragging your finger…" else "Touch and drag to measure",
+            resources.getString(R.string.touch_test_rate, instantRate),
+            60f,
+            230f,
+            ratePaint,
+        )
+        canvas.drawText(
+            resources.getString(R.string.touch_test_stats, peakRate, avgRate),
+            60f,
+            310f,
+            infoPaint,
+        )
+        canvas.drawText(
+            resources.getString(
+                if (tracking) R.string.touch_test_dragging else R.string.touch_test_instruction
+            ),
             60f,
             height - 90f,
             infoPaint,

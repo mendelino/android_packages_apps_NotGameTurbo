@@ -52,4 +52,15 @@
 
     <string name="reset_title">Reset to defaults</string>
     <string name="reset_message">Reset game mode settings for this app to their defaults?</string>
+
+    <string name="touch_test_rate">%1$d Hz</string>
+    <string name="touch_test_stats">"Peak: %1$d Hz    Avg (1s): %2$d Hz"</string>
+    <string name="touch_test_dragging">Keep dragging your finger…</string>
+    <string name="touch_test_instruction">Touch and drag to measure</string>
+
+    <string name="debug_panel_orientation">Screen orientation</string>
+
+    <string name="debug_mode_title">%1$s (%2$d)</string>
+
+    <string name="debug_mode_values">"Current: %1$s  Default: %2$s  Min: %3$s  Max: %4$s  Values: %5$s"</string>
 </resources>

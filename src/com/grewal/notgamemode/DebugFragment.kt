@@ -17,15 +17,15 @@ class DebugFragment : SettingsBasePreferenceFragment() {
 
     private val modes =
         listOf(
-            "Game_Mode" to 0,
-            "UP_THRESHOLD" to 2,
-            "Tolerance" to 3,
-            "Aim_Sensitivity" to 4,
-            "Tap_Stability" to 5,
-            "Expert_Mode" to 6,
-            "Edge_Filter" to 7,
-            "Panel_Orientation" to 8,
-            "Super_Report" to 202,
+            R.string.touch_test_game_mode to 0,
+            R.string.tune_up_threshold to 2,
+            R.string.tune_tolerance to 3,
+            R.string.tune_aim_sensitivity to 4,
+            R.string.tune_tap_stability to 5,
+            R.string.expert_mode_title to 6,
+            R.string.tune_edge_filter to 7,
+            R.string.debug_panel_orientation to 8,
+            R.string.super_report_title to 202,
         )
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -42,10 +42,10 @@ class DebugFragment : SettingsBasePreferenceFragment() {
             }
         )
 
-        modes.forEach { (label, mode) ->
+        modes.forEach { (labelRes, mode) ->
             val pref =
                 Preference(context).apply {
-                    title = "$label ($mode)"
+                    title = getString(R.string.debug_mode_title, getString(labelRes), mode)
                     summary = getString(R.string.debug_querying)
                     isSelectable = false
                     isIconSpaceReserved = false
@@ -72,6 +72,13 @@ class DebugFragment : SettingsBasePreferenceFragment() {
     private fun format(q: TouchFeatureManager.ModeQuery): String {
         fun s(v: Int?) = v?.toString() ?: "—"
         val values = q.values?.joinToString(",", "[", "]") ?: "—"
-        return "cur=${s(q.cur)}  def=${s(q.def)}  min=${s(q.min)}  max=${s(q.max)}  values=$values"
+        return getString(
+            R.string.debug_mode_values,
+            s(q.cur),
+            s(q.def),
+            s(q.min),
+            s(q.max),
+            values,
+        )
     }
 }
