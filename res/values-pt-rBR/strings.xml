@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NotGameTurbo</string>
+    <string name="settings_summary">Personaliza a resposta ao toque em cada jogo ou app</string>
+    <string name="sysfs_error_title">Controles de toque indisponíveis</string>
+    <string name="sysfs_error_message">O dispositivo não oferece os controles necessários ou não permite alterá-los. O modo de jogo está indisponível.</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="exit">Sair</string>
+    <string name="games_category_title">Jogos</string>
+    <string name="custom_category_title">Apps adicionados</string>
+    <string name="add_app_title">Adicionar app…</string>
+    <string name="add_app_dialog_title">Escolha um app</string>
+    <string name="remove_app_title">Remover app da lista?</string>
+    <string name="remove_app_message">%1$s deixará de aparecer em Apps adicionados.</string>
+    <string name="remove_app_confirm">Remover</string>
+    <string name="add_app_summary">Toque e segure um app adicionado para removê-lo da lista</string>
+    <string name="no_games_summary">Nenhum jogo encontrado. Adicione apps abaixo.</string>
+    <string name="app_enable_title">Modo de jogo</string>
+    <string name="app_enabled">Ativado</string>
+    <string name="touch_test_title">Testar amostragem do toque</string>
+    <string name="touch_test_game_mode">Modo de jogo</string>
+    <string name="super_report_title">Alta taxa de amostragem</string>
+    <string name="super_report_summary">Eleva a frequência de registro dos toques de 240 Hz para 480 Hz</string>
+    <string name="tuning_category_title">Ajustes de toque</string>
+    <string name="tuning_unavailable_summary">O painel de toque deste dispositivo não permite ajustes.</string>
+    <string name="tune_up_threshold">Detecção ao soltar o dedo</string>
+    <string name="tune_tolerance">Tolerância a pequenos movimentos</string>
+    <string name="tune_aim_sensitivity">Sensibilidade da mira</string>
+    <string name="tune_tap_stability">Estabilidade do toque</string>
+    <string name="tune_edge_filter">Filtro de toques nas bordas</string>
+    <string name="expert_mode_title">Perfil predefinido</string>
+    <string name="expert_mode_summary">Substitui os valores ajustados manualmente por um conjunto pronto de ajustes</string>
+    <string name="expert_preset_title">Perfil de toque</string>
+    <string name="debug_title">Diagnóstico do toque</string>
+    <string name="debug_querying">Lendo valores…</string>
+    <string name="debug_refresh">Atualizar</string>
+    <string name="reset_title">Restaurar padrões</string>
+    <string name="reset_message">Restaurar os padrões deste app? O modo de jogo será desativado e os ajustes personalizados serão excluídos.</string>
+    <string name="touch_test_stats">"Pico: %1$d Hz    Média (1 s): %2$d Hz"</string>
+    <string name="touch_test_dragging">Continue deslizando o dedo…</string>
+    <string name="touch_test_instruction">Toque e deslize para medir</string>
+    <string name="debug_panel_orientation">Orientação da tela</string>
+    <string name="debug_mode_values">"Atual: %1$s  Padrão: %2$s  Mín: %3$s  Máx: %4$s  Valores: %5$s"</string>
+</resources>
