@@ -7,7 +7,6 @@ package com.grewal.notgamemode
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 
@@ -20,8 +19,6 @@ class GameModeActivity : CollapsingToolbarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        TouchFeatureManager.attach(this)
-
         supportFragmentManager
             .beginTransaction()
             .replace(
@@ -33,69 +30,28 @@ class GameModeActivity : CollapsingToolbarBaseActivity() {
 
         startService(Intent(this, GameModeService::class.java))
 
-        checkTouchFeature()
+        checkTouchNodes()
     }
 
-    private fun checkTouchFeature() {
+    private fun checkTouchNodes() {
         Thread {
-                val backend = TouchFeatureManager.backend
                 val available = TouchFeatureManager.isAvailable()
-                val alternatives =
-                    if (available) emptyList()
-                    else
-                        TouchFeatureManager.alternativesTo(backend).filter {
-                            TouchFeatureManager.isAvailable(it)
-                        }
                 runOnUiThread {
                     if (!available && !isFinishing) {
-                        showBackendError(backend, alternatives)
+                        showTouchNodesError()
                     }
                 }
             }
             .start()
     }
 
-    private fun showBackendError(backend: Backend, alternatives: List<Backend>) {
-        val builder =
-            AlertDialog.Builder(this)
-                .setTitle(titleOf(backend))
-                .setMessage(messageOf(backend))
-                .setCancelable(false)
-                .setPositiveButton(R.string.retry) { _, _ -> checkTouchFeature() }
-                .setNegativeButton(R.string.exit) { _, _ -> finish() }
-
-        alternatives.firstOrNull()?.let { alternative ->
-            builder.setNeutralButton(switchLabelOf(alternative)) { _, _ ->
-                TouchFeatureManager.backend = alternative
-                Toast.makeText(this, switchedLabelOf(alternative), Toast.LENGTH_SHORT).show()
-                checkTouchFeature()
-            }
-        }
-
-        builder.show()
+    private fun showTouchNodesError() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.sysfs_error_title)
+            .setMessage(R.string.sysfs_error_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.retry) { _, _ -> checkTouchNodes() }
+            .setNegativeButton(R.string.exit) { _, _ -> finish() }
+            .show()
     }
-
-    private fun titleOf(backend: Backend) =
-        when (backend) {
-            Backend.HAL -> R.string.touchfeature_error_title
-            Backend.SYSFS -> R.string.sysfs_error_title
-        }
-
-    private fun messageOf(backend: Backend) =
-        when (backend) {
-            Backend.HAL -> R.string.touchfeature_error_message
-            Backend.SYSFS -> R.string.sysfs_error_message
-        }
-
-    private fun switchLabelOf(backend: Backend) =
-        when (backend) {
-            Backend.HAL -> R.string.backend_switch_hal
-            Backend.SYSFS -> R.string.backend_switch_sysfs
-        }
-
-    private fun switchedLabelOf(backend: Backend) =
-        when (backend) {
-            Backend.HAL -> R.string.backend_switched_hal
-            Backend.SYSFS -> R.string.backend_switched_sysfs
-        }
 }

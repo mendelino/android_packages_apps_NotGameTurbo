@@ -26,18 +26,10 @@ name=NotGameTurbo
 version=v1.3
 versionCode=103
 author=grewal
-description=Per-app touch game mode, super report rate, tuning and panel orientation for Xiaomi devices with the touchfeature HAL.
+description=Per-app touch game mode, super report rate, tuning and panel orientation for Xiaomi devices.
 EOF
 
 cat > "$BUILD/sepolicy.rule" <<'EOF'
-allow platform_app hal_touchfeature_xiaomi_service service_manager find
-allow platform_app hal_touchfeature_xiaomi_default binder { call transfer }
-allow hal_touchfeature_xiaomi_default platform_app binder { call transfer }
-allow hal_touchfeature_xiaomi_default platform_app fd use
-allow priv_app hal_touchfeature_xiaomi_service service_manager find
-allow priv_app hal_touchfeature_xiaomi_default binder { call transfer }
-allow hal_touchfeature_xiaomi_default priv_app binder { call transfer }
-allow hal_touchfeature_xiaomi_default priv_app fd use
 allow platform_app vendor_sysfs_touch file { ioctl read write getattr lock append map open watch watch_reads }
 allow priv_app vendor_sysfs_touch file { ioctl read write getattr lock append map open watch watch_reads }
 typeattribute vendor_sysfs_touch mlstrustedobject

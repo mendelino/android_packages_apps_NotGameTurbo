@@ -21,7 +21,6 @@ class TouchTestActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        TouchFeatureManager.attach(this)
         val root = FrameLayout(this)
         root.addView(TouchTestView(this), FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
 
@@ -36,17 +35,6 @@ class TouchTestActivity : Activity() {
                 }
             }
         )
-        if (TouchFeatureManager.backend == Backend.HAL) {
-            controls.addView(
-                Switch(this).apply {
-                    text = getString(R.string.touch_test_super_report)
-                    setTextColor(Color.WHITE)
-                    setOnCheckedChangeListener { _, checked ->
-                        TouchFeatureManager.setSuperReport(checked)
-                    }
-                }
-            )
-        }
 
         root.addView(
             controls,

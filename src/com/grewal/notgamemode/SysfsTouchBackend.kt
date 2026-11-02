@@ -8,7 +8,7 @@ package com.grewal.notgamemode
 import android.util.Log
 import java.io.File
 
-object SysfsTouchBackend : TouchBackend {
+object SysfsTouchBackend {
 
     private const val TAG = "GameModeSysfsBackend"
 
@@ -30,14 +30,16 @@ object SysfsTouchBackend : TouchBackend {
 
     private val FILTER_ROW = Regex("""\[(\d+)]:\s*(-?\d+)""")
 
-    override val id = Backend.SYSFS
-
-    override fun isAvailable(): Boolean =
-        runCatching { File(NODE_FILTERS).canWrite() && File(NODE_GAME_MODE).canWrite() }
+    fun isAvailable(): Boolean =
+        runCatching {
+            listOf(NODE_FILTERS, NODE_GAME_MODE, NODE_SAMPLE_RATE).all { path ->
+                File(path).let { it.canRead() && it.canWrite() }
+            }
+        }
             .onFailure { e -> Log.e(TAG, "failed to probe touch nodes", e) }
             .getOrDefault(false)
 
-    override fun setModeValue(mode: Int, value: Int) {
+    fun setModeValue(mode: Int, value: Int) {
         when (mode) {
             TouchFeatureManager.TOUCH_GAME_MODE -> write(NODE_GAME_MODE, value.toString())
             TouchFeatureManager.TOUCH_SUPER_REPORT -> write(NODE_SAMPLE_RATE, value.toString())
@@ -53,7 +55,7 @@ object SysfsTouchBackend : TouchBackend {
         }
     }
 
-    override fun queryMode(mode: Int): TouchFeatureManager.ModeQuery {
+    fun queryMode(mode: Int): TouchFeatureManager.ModeQuery {
         val cur =
             when (mode) {
                 TouchFeatureManager.TOUCH_GAME_MODE -> readInt(NODE_GAME_MODE)

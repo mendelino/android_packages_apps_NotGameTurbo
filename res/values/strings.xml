@@ -7,14 +7,8 @@
     <string name="app_name">NotGameTurbo</string>
     <string name="settings_summary">Per-app touch game mode and tuning</string>
 
-    <string name="touchfeature_error_title">Touchfeature unavailable</string>
-    <string name="touchfeature_error_message">Failed to bind the touchfeature service, or it was not found. Game mode won\'t work.</string>
     <string name="sysfs_error_title">Touch nodes unavailable</string>
     <string name="sysfs_error_message">The touch nodes under /sys/class/touch are missing or not writable. Game mode won\'t work.</string>
-    <string name="backend_switch_hal">Use touchfeature</string>
-    <string name="backend_switch_sysfs">Use touch nodes</string>
-    <string name="backend_switched_hal">Switched to touchfeature</string>
-    <string name="backend_switched_sysfs">Switched to touch nodes</string>
     <string name="retry">Retry</string>
     <string name="exit">Exit</string>
 
@@ -36,7 +30,6 @@
 
     <string name="touch_test_title">Test polling rate</string>
     <string name="touch_test_game_mode">Game mode</string>
-    <string name="touch_test_super_report">Super report</string>
 
     <string name="super_report_title">Super report rate</string>
     <string name="super_report_summary">480 Hz super-resolution reporting (game mode is 240 Hz)</string>
@@ -53,7 +46,7 @@
     <string name="expert_mode_summary">Use a built-in tuning preset instead of the manual values</string>
     <string name="expert_preset_title">Expert preset</string>
 
-    <string name="debug_title">HAL mode debug</string>
+    <string name="debug_title">Touch mode debug</string>
     <string name="debug_querying">Querying…</string>
     <string name="debug_refresh">Refresh</string>
 

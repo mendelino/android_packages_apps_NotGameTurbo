@@ -18,7 +18,6 @@ class DebugFragment : SettingsBasePreferenceFragment() {
     private val modes =
         listOf(
             "Game_Mode" to 0,
-            "Active_MODE" to 1,
             "UP_THRESHOLD" to 2,
             "Tolerance" to 3,
             "Aim_Sensitivity" to 4,
@@ -26,7 +25,6 @@ class DebugFragment : SettingsBasePreferenceFragment() {
             "Expert_Mode" to 6,
             "Edge_Filter" to 7,
             "Panel_Orientation" to 8,
-            "Report_Rate" to 9,
             "Super_Report" to 202,
         )
 

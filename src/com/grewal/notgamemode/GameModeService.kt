@@ -35,7 +35,6 @@ class GameModeService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        TouchFeatureManager.attach(this)
         prefs = GamePrefs(this)
         usageStats = getSystemService(UsageStatsManager::class.java)
         thread = HandlerThread(TAG).apply { start() }
